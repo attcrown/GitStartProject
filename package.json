@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "turbo": "^1.12.2"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel"
+  },
+  "name": "@myproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
