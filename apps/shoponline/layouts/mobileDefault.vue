@@ -12,6 +12,14 @@
                 <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">หน้าหลัก</p>
             </div>
             <div class="me-3">
+                <v-icon @click="$router.push('/')" color="white" size="24px">mdi-cart-heart</v-icon>
+                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">ตะกร้าสินค้า</p>
+            </div>
+            <div class="me-3">
+                <v-icon @click="$router.push('/')" color="white" size="24px">mdi-invoice-list</v-icon>
+                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">คลังของฉัน</p>
+            </div>
+            <div class="me-3">
                 <v-menu offset-y v-model="menuLight">
                     <template v-slot:activator="{ attrs, on }">
                         <div v-bind="attrs" v-on="on">

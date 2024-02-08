@@ -10,9 +10,9 @@
                     <v-col cols="12" class="text-center">
                         <div style="font-size: 28px;" class="mt-5">
                             <v-icon left :color="this.cards.length === 0 ? 'red' : '#FF9800'" style="font-size: 32px;">
-                                {{ this.cards.length === 0 ? 'mdi-archive-cancel-outline' : 'mdi-label' }}
+                                {{ this.cards.length === 0 ? 'mdi mdi-select-search' : 'mdi-label' }}
                             </v-icon>
-                            {{ this.cards.length === 0 ? 'ไม่พบสินค้า' : 'รายการสินค้าแนะนำ' }}
+                            {{ this.cards.length === 0 ? 'ไม่พบสินค้า กรุณาค้นหาใหม่...' : 'รายการสินค้าแนะนำ' }}
                         </div>
                     </v-col>
                     <v-col v-for="card in cards" :key="card.title" :cols="$store.state.deviceMode ? 6 : 3">
