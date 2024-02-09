@@ -12,6 +12,15 @@ app.get("/", (req, res) => {
   }
 });
 
+app.post('/', (req, res) => {
+  const postData = req.body;
+  console.log('Received POST data:', postData);
+  // ทำตามที่คุณต้องการกับข้อมูลที่ได้รับ
+  // เช่น บันทึกลงฐานข้อมูล, ประมวลผลข้อมูล, หรือทำอย่างอื่น ๆ
+  // ส่งตอบกลับไปที่ frontend
+  res.send('POST request to the homepage');
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

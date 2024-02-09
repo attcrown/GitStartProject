@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "site": "exchange-shop-th",
+    "site": "goshop-9e571",
     "public": "dist",
     "ignore": [
       "firebase.json",

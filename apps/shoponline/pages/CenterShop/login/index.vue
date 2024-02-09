@@ -2,13 +2,13 @@
     <div>
         <div :class="!deviceMode ? 'center-container' : ''" 
             :style="!deviceMode ? 'height: 89vh;' : 'height: 100%;'" 
-            style="background: linear-gradient(to right, #0381f7ad, #78baf094,#78baf094, #0577fa9a);">
+            style="background: linear-gradient(to right, #ffa600ad, #f0d47894,#eef07894, #faac059a);">
             <div class="container fontsMoi text-center " rounded="xxl"
                 style="background-color:transparent; max-width: 500px;">
-                <div class="d-flex justify-center">
+                <!-- <div class="d-flex justify-center">
                     <v-img :src="require('@/assets/logoexchange.png')" style="opacity: 0.8" max-width="300px"></v-img>
-                </div>                
-                <h1 class="fw-bold">Exchange Shop <span class="mdi mdi-shopping-outline text-h4"></span></h1>
+                </div>                 -->
+                <h1 class="fw-bold">HosMerge Shop <span class="mdi mdi-shopping-outline text-h4"></span></h1>
                 <hr style="border-bottom: 2px solid #000">
                 <p class="text--secondary font-weight-black fontsPro">
                     <br>ทุกอย่างจะง่ายขึ้นเพียงแค่คลิกเดียวก็เทรดได้แล้ว <br><br>

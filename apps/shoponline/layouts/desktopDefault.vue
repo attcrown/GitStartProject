@@ -1,6 +1,6 @@
 <template>
     <div class="fontsPublic d-flex justify-space-around align-center pt-2"
-            style="background-color: #0240aa; color: white; position: fixed; width: 100%; z-index: 100;" >
+            style="background-color: #694400ad; color: white; position: fixed; width: 100%; z-index: 100;" >
             <div class="d-flex align-center">
                 ติดตามเราบน
                 
@@ -11,18 +11,17 @@
                     text
                     color="white"
                     style="font-size: 17px;"
-                    @click="$router.push('/CenterShop/shop')">
-                        หน้าหลัก 
-                        <v-icon>mdi mdi-home</v-icon>
+                    @click="$router.push('/CenterShop/addstock')">
+                        เพิ่มสินค้า
+                        <v-icon>mdi mdi-invoice-list</v-icon>
                 </v-btn>
-                
                 <v-btn
                     text
                     color="white"
                     style="font-size: 17px;"
-                    @click="$router.push('/CenterShop/addstock')">
-                        เพิ่มสินค้า
-                        <v-icon>mdi mdi-invoice-list</v-icon>
+                    @click="$router.push('/CenterShop/shop')">
+                        รายการสินค้า
+                        <v-icon>mdi mdi-store</v-icon>
                 </v-btn>
             </div>
 

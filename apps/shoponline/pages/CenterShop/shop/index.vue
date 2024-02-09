@@ -1,9 +1,6 @@
 <template>
     <div>
-        <search></search>
-        <carousel></carousel>
         <listitems></listitems>
-        <pagination></pagination>
         <div v-if="!$store.state.deviceMode">
             <p class="text-center fontsPro pt-1">
                 การันตีความปลอดภัยแบบ Real-time ที่ทันสมัยในทุกช่วงการใช้งาน <br>
@@ -19,8 +16,6 @@
     </div>
 </template>
 <script>
-import search from './search.vue';
-import carousel from './carousel.vue';
 import listitems from './list-items.vue';
 import pagination from './pagination.vue';
 import { publicStatus } from '../../../services/public-status';
@@ -30,16 +25,11 @@ export default {
         await this.publicStatus()
     },
     components: {
-        search,
-        carousel,
         listitems,
-        pagination
     },
     methods: {
         async publicStatus() {
             publicStatus(this.$fireModule.auth(), this.$store); // รอให้ publicStatus เสร็จสิ้น
-            const result = await this.$axios.$get('/document-api/'); // รอให้ $get เสร็จสิ้น
-            console.log(result);
         },
     },
 

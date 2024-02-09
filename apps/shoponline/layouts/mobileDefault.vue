@@ -1,6 +1,6 @@
 <template>
     <div class="fontsPublic d-flex align-center justify-center pt-2"        
-        style="background-color: #0240aa; color: white; position: fixed; width: 100%; z-index: 100; bottom: 0;">
+        style="background-color: #694400ad; color: white; position: fixed; width: 100%; z-index: 100; bottom: 0;">
         <div v-if="!$store.state?.uid" class="d-flex align-center">
             <span class="mdi mdi-account-circle text-h5"></span> &nbsp<a @click="$router.push('/CenterShop/login')"
                 style="color: white">เข้าสู่ระบบ</a>
@@ -8,13 +8,13 @@
 
         <div v-if="$store.state?.displayName" class="d-flex align-center text-center">
             <div class="me-3">
-                <v-icon @click="$router.push('/')" color="white" size="24px">mdi-home</v-icon>
-                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">หน้าหลัก</p>
-            </div>
-            <div class="me-3">
                 <v-icon @click="$router.push('/CenterShop/addstock')" color="white" size="24px">mdi-invoice-list</v-icon>
                 <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">เพิ่มสินค้า</p>
             </div>
+            <div class="me-3">
+                <v-icon @click="$router.push('/CenterShop/shop')" color="white" size="24px">mdi-store</v-icon>
+                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">รายการสินค้า</p>
+            </div>            
             <div class="me-3">
                 <v-menu offset-y v-model="menuUser">
                     <template v-slot:activator="{ attrs, on }">
