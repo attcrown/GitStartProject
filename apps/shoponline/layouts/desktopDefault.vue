@@ -3,15 +3,10 @@
             style="background-color: #0240aa; color: white; position: fixed; width: 100%; z-index: 100;" >
             <div class="d-flex align-center">
                 ติดตามเราบน
-                <v-btn icon color="white" href="https://web.facebook.com/marketplace/item/392278576571390/">
-                    <v-icon size="24px"> mdi mdi-facebook </v-icon>
-                </v-btn>
-                <v-btn icon color="white" href="https://www.instagram.com/att_vongvaris/">
-                    <v-icon size="24px"> mdi mdi-instagram </v-icon>
-                </v-btn>
+                
             </div>
 
-            <div class="d-flex align-center justify-space-around">
+            <div class="d-flex align-center justify-space-around" v-if="$store.state?.uid">
                 <v-btn
                     text
                     color="white"
@@ -20,67 +15,18 @@
                         หน้าหลัก 
                         <v-icon>mdi mdi-home</v-icon>
                 </v-btn>
+                
                 <v-btn
                     text
                     color="white"
                     style="font-size: 17px;"
-                    @click="$router.push('/CenterShop/shop')">
-                        ตะกร้าสินค้า 
-                        <v-icon>mdi mdi-cart-heart</v-icon>
-                </v-btn>
-                <v-btn
-                    text
-                    color="white"
-                    style="font-size: 17px;"
-                    @click="$router.push('/CenterShop/shop')">
-                        คลังของฉัน
+                    @click="$router.push('/CenterShop/addstock')">
+                        เพิ่มสินค้า
                         <v-icon>mdi mdi-invoice-list</v-icon>
                 </v-btn>
             </div>
 
-            <div class="d-flex align-center">
-                <div v-if="$store.state?.uid" class="d-flex">
-                    <v-menu offset-y v-model="menuMessage">
-                        <template v-slot:activator="{ attrs, on }">
-                            <div v-bind="attrs" v-on="on">
-                                <v-badge :color="alert_message > 0 ? 'error' : ''" :content="alert_message" class="me-3" overlap>
-                                    <v-icon color="white" size="24px"> mdi mdi-message-text-outline</v-icon>
-                                </v-badge>
-                            </div>
-                        </template>
-                        <v-list>
-                            <v-list-item v-for="item in itemsMessage" :key="item.to" router :to="item.to" @click="">
-                                <v-list-item-action>
-                                    <v-icon>{{ item.icon }}</v-icon>
-                                </v-list-item-action>
-                                <v-list-item-title>
-                                    {{ item.title }}
-                                </v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                    
-                    <v-menu offset-y v-model="menuLight">
-                        <template v-slot:activator="{ attrs, on }">
-                            <div v-bind="attrs" v-on="on">
-                                <v-badge :color="alert_light > 0 ? 'error' : ''" :content="alert_light" class="me-6" overlap>
-                                    <v-icon color="white" size="24px"> mdi mdi-bell-outline</v-icon>
-                                </v-badge>
-                            </div>
-                        </template>
-                        <v-list>
-                            <v-list-item v-for="item in itemsLight" :key="item.to" router :to="item.to" @click="">
-                                <v-list-item-action>
-                                    <v-icon>{{ item.icon }}</v-icon>
-                                </v-list-item-action>
-                                <v-list-item-title>
-                                    {{ item.title }}
-                                </v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                    &nbsp&nbsp&nbsp
-                </div>
+            <div class="d-flex align-center">                
                 <div v-if="!$store.state?.uid" class="d-flex align-center">
                     <span class="mdi mdi-account-circle text-h5"></span> &nbsp<a @click="$router.push('/CenterShop/login')"
                         style="color: white">เข้าสู่ระบบ</a>

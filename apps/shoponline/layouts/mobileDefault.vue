@@ -12,34 +12,8 @@
                 <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">หน้าหลัก</p>
             </div>
             <div class="me-3">
-                <v-icon @click="$router.push('/')" color="white" size="24px">mdi-cart-heart</v-icon>
-                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">ตะกร้าสินค้า</p>
-            </div>
-            <div class="me-3">
-                <v-icon @click="$router.push('/')" color="white" size="24px">mdi-invoice-list</v-icon>
-                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">คลังของฉัน</p>
-            </div>
-            <div class="me-3">
-                <v-menu offset-y v-model="menuLight">
-                    <template v-slot:activator="{ attrs, on }">
-                        <div v-bind="attrs" v-on="on">
-                            <v-badge :color="alert_light > 0 ? 'error' : ''" :content="alert_light" class="me-6" overlap>
-                                <v-icon style="margin-left: 20px;" color="white" size="24px"> mdi mdi-bell-outline</v-icon>
-                            </v-badge>
-                        </div>
-                    </template>
-                    <v-list>
-                        <v-list-item v-for="item in itemsLight" :key="item.to" router :to="item.to" @click="">
-                            <v-list-item-action>
-                                <v-icon>{{ item.icon }}</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-title>
-                                {{ item.title }}
-                            </v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">การแจ้งเตือน</p>
+                <v-icon @click="$router.push('/CenterShop/addstock')" color="white" size="24px">mdi-invoice-list</v-icon>
+                <p style="margin-bottom: -8px; font-size: 12px; color:rgba(255, 255, 255, 0.754)">เพิ่มสินค้า</p>
             </div>
             <div class="me-3">
                 <v-menu offset-y v-model="menuUser">
