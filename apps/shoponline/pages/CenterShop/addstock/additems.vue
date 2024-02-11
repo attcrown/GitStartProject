@@ -124,7 +124,7 @@ export default {
             })
         },
         editItem(item ,key) {
-            this.ket_edit = key;
+            this.key_edit = key;
             this.editedItem = item;
             this.dialog = true;
         },
