@@ -1,6 +1,26 @@
-version: '3' # กำหนด docker version
+version: "3.8"
+
+x-logging: &default-logging
+  options:
+    max-size: "12m"
+    max-file: "5"
+  driver: json-file
+
 services:
-  node-server: # ตั้งชื่อ container (เหมือน --name)
-    build: . # ตำแหน่ง dockerfile
-    ports:
-      - "8000:3001" # map port ออกมา เหมือน -p ใน docker run 
+  db:
+    logging: *default-logging
+    image: postgres:16.1-alpine
+    restart: unless-stopped
+    networks:
+      - default
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./volumes/db/init:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+
+networks:
+  default:
