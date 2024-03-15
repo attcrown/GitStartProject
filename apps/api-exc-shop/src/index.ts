@@ -1,5 +1,5 @@
-import { appfirebase, db , pool} from "./services/config";
-import express, { json } from "express";
+import { db , sequelize} from "./services/config";
+import express from "express";
 import {getAll , create , getItemName , deleteItems} from "./routes/typeItemsRoutes";
 
 const app = express();
@@ -12,20 +12,22 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
+// check DB pg
+sequelize.authenticate().then(() => {
+  console.log('pg Connection has been established successfully.');
+})
+
+// check DB firebase
+if(db) console.log('firebase Connection has been established successfully.');
+
 // routes
 app.use(getAll);
 app.use(create);
 app.use(getItemName);
 app.use(deleteItems);
 
-// check DB
-pool.query('SELECT NOW()', (err, res) => {
-  if (err) {
-    console.error('Error executing query', err);
-    return;
-  }
-  console.log('Connected to PostgreSQL:', res.rows[0].now);
-});
+
+
 
 
 
