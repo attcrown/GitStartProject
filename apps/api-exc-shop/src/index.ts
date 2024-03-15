@@ -1,11 +1,6 @@
 import { db , sequelize} from "./services/config";
 import express from "express";
-import {routerGetAll , 
-  routerCreate , 
-  routerGetItemName , 
-  routerDeleteItems ,
-  routerUpdate
-} from "./routes/typeItemsRoutes";
+import routerTypeItem from "./routes/typeItemsRoutes";
 import { auth } from "./middlewares/auth";
 
 const app = express();
@@ -27,9 +22,5 @@ if(db) console.log('firebase Connection has been established successfully.');
 app.use(auth);
 
 // routes
-app.use(routerGetAll);
-app.use(routerCreate);
-app.use(routerGetItemName);
-app.use(routerDeleteItems);
-app.use(routerUpdate);
+app.use(routerTypeItem);
 

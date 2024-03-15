@@ -15,8 +15,8 @@ export const getAllItems = async (req: Request, res: Response) => {
 export const createItem = async (req: Request, res: Response) => {
   console.log(req.body)
   try {
-    const { name, active } = req.body;
-    const newItem = await TypeItems.create({ name, active });
+    const {seq_no, name, active } = req.body;
+    const newItem = await TypeItems.create({seq_no, name, active });
     res.status(201).json(newItem);
   } catch (error) {
     console.error('Error creating item', error);
@@ -71,4 +71,5 @@ export const updateItem = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 

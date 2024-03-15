@@ -7,12 +7,13 @@ import { getAllItems ,
     updateItem
 } from '../controllers/typeItemsController'; 
 
-const router = express.Router();
+const routerTypeItem = express.Router();
 
-export const routerGetAll = router.get('/items', getAllItems);
-export const routerGetItemName = router.get('/items/search', getItemsByName);
-export const routerCreate = router.post('/items', createItem);
-export const routerDeleteItems = router.delete('/items/:id', deleteItem);
-export const routerUpdate = router.put('/items/:id', updateItem);
+routerTypeItem.get('/items', getAllItems);
+routerTypeItem.get('/items/search', getItemsByName);
+routerTypeItem.post('/items', createItem);
+routerTypeItem.delete('/items/:id', deleteItem);
+routerTypeItem.put('/items/:id', updateItem);
 
+export default routerTypeItem;
 
