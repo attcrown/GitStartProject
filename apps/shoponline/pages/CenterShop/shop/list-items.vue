@@ -8,7 +8,7 @@
                 :style="!$store.state.deviceMode ? 'max-width: 1200px' : ''">
                 <v-row dense class="fontsProList">
                     <v-col cols="12" class="text-center">
-                        <div style="font-size: 28px;" class="mt-5">
+                        <div :style="!$store.state.deviceMode ? 'font-size: 28px' : 'font-size: 18px'" class="mt-5">
                             <v-icon left :color="this.cards.length === 0 ? 'red' : '#FF9800'" style="font-size: 32px;">
                                 {{ this.cards.length === 0 ? 'mdi mdi-select-search' : 'mdi-label' }}
                             </v-icon>

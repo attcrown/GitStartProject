@@ -1,0 +1,60 @@
+// controllers/itemController.ts
+import { Request, Response } from 'express';
+import TypeItems from '../models/typeItemModel';
+import { Op } from 'sequelize';
+
+export const getAllItems = async (req: Request, res: Response) => {
+  try {
+    const items = await TypeItems.findAll();
+    res.json(items);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+export const createItem = async (req: Request, res: Response) => {
+  console.log(req.body)
+  try {
+    const { name, active } = req.body;
+    const newItem = await TypeItems.create({ name, active });
+    res.status(201).json(newItem);
+  } catch (error) {
+    console.error('Error creating item', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+export const getItemsByName = async (req: Request, res: Response) => {
+  console.log(req.query)
+  try {
+    const { name } = req.query;
+    if (!name) {
+      return res.status(400).json({ error: 'Name parameter is required' });
+    }
+    const items = await TypeItems.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`, // ใช้ Op.iLike เพื่อทำการค้นหา case-insensitive
+        },
+      },
+    });
+    res.json(items);
+  } catch (error) {
+    console.error('Error getting items by name', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// รับคำขอ DELETE และลบข้อมูลตาม id ที่ระบุ
+export const deleteItem = async (req: Request, res: Response) => {
+  console.log("delete" ,req.params.id)
+  try {
+    const id = req.params.id; // รับค่า id จาก URL parameter
+    await TypeItems.destroy({ where: { id } }); // ลบข้อมูลที่ตรงกับ id
+    res.status(200).json({ message: 'Item deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting item', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+

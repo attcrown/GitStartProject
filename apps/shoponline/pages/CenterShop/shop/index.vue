@@ -38,8 +38,6 @@ export default {
     methods: {
         async publicStatus() {
             publicStatus(this.$fireModule.auth(), this.$store); // รอให้ publicStatus เสร็จสิ้น
-            const result = await this.$axios.$get('/document-api/'); // รอให้ $get เสร็จสิ้น
-            console.log(result);
         },
     },
 
