@@ -47,13 +47,27 @@ export const getItemsByName = async (req: Request, res: Response) => {
 
 // รับคำขอ DELETE และลบข้อมูลตาม id ที่ระบุ
 export const deleteItem = async (req: Request, res: Response) => {
-  console.log("delete" ,req.params.id)
+  console.log("delete" ,req.params)
   try {
-    const id = req.params.id; // รับค่า id จาก URL parameter
+    const { id } = req.params; // รับค่า id จาก URL parameter
     await TypeItems.destroy({ where: { id } }); // ลบข้อมูลที่ตรงกับ id
     res.status(200).json({ message: 'Item deleted successfully' });
   } catch (error) {
     console.error('Error deleting item', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+//update
+export const updateItem = async (req: Request, res: Response) => {
+  console.log("updateItem" ,req.params)
+  try {
+    const { id } = req.params; // รับค่า id จาก URL params
+    const { seq_no, name, active } = req.body; // รับค่าข้อมูลที่ต้องการอัปเดต
+    const updatedItem = await TypeItems.update({ seq_no, name, active }, { where: { id } });
+    res.json(updatedItem);
+  } catch (error) {
+    console.error('Error updating item', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };

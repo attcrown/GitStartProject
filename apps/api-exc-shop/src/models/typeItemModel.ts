@@ -38,7 +38,7 @@ TypeItems.init(
     modelName: 'TypeItems',
     tableName: 'type_items',
     timestamps : true,
-    paranoid : true,
+    paranoid : true, // ต้องการไม่ให้ลบข้อมูลจริง
     underscored : true, // กำหนดให้ Sequelize ใช้รูปแบบชื่อคอลัมน์ที่มีอักษรตัวเล็กและใช้ underscore (_) เป็นตัวต่อคำ.
     schema: 'myproject', // ระบุ schema ที่เก็บตาราง
   }
