@@ -15,8 +15,8 @@ export const getAllItems = async (req: Request, res: Response) => {
 export const createItem = async (req: Request, res: Response) => {
   console.log(req.body)
   try {
-    const {seq_no, name, active } = req.body;
-    const newItem = await TypeItems.create({seq_no, name, active });
+    const {seq_no, name } = req.body;
+    const newItem = await TypeItems.create({seq_no, name });
     res.status(201).json(newItem);
   } catch (error) {
     console.error('Error creating item', error);
@@ -64,8 +64,8 @@ export const updateItem = async (req: Request, res: Response) => {
   try {
     const { id } = req.params; // รับค่า id จาก URL params
     const { seq_no, name, active } = req.body; // รับค่าข้อมูลที่ต้องการอัปเดต
-    const updatedItem = await TypeItems.update({ seq_no, name, active }, { where: { id } });
-    res.json(updatedItem);
+    await TypeItems.update({ seq_no, name, active }, { where: { id } });
+    res.json({ message: 'Item update successfully' });
   } catch (error) {
     console.error('Error updating item', error);
     res.status(500).json({ error: 'Internal server error' });

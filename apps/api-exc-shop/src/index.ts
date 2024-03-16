@@ -1,6 +1,7 @@
 import { db , sequelize} from "./services/config";
 import express from "express";
 import routerTypeItem from "./routes/typeItemsRoutes";
+import routerDetailUser from "./routes/detailUserRoutes";
 import { auth } from "./middlewares/auth";
 
 const app = express();
@@ -23,4 +24,5 @@ app.use(auth);
 
 // routes
 app.use(routerTypeItem);
+app.use(routerDetailUser);
 

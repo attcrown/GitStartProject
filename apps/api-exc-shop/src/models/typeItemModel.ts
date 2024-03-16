@@ -8,7 +8,6 @@ class TypeItems extends Model {
   public name!: string;
   public created_at!: Date;
   public updated_at!: Date;
-  public active!: boolean;
 }
 
 TypeItems.init(
@@ -27,10 +26,6 @@ TypeItems.init(
     name: {
       type: DataTypes.STRING(100),
       allowNull: true,
-    },
-    active: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
     }
   },
   {
