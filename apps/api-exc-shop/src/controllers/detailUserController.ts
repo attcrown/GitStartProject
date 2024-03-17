@@ -1,7 +1,6 @@
 // controller/detailUserController.ts
 import { Request, Response } from 'express';
 import DetailUser from '../models/detailUserModel';
-import { Op } from 'sequelize';
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
@@ -13,13 +12,38 @@ export const getAllUsers = async (req: Request, res: Response) => {
     }
 }
 
+export const getUserById = async (req: Request, res: Response) => {
+    try {
+        const { id }  = req.query;
+        const user = await DetailUser.findOne({ where: { id } });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error('Error getting user', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 export const createUser = async (req: Request, res: Response) => {
     try {
-        const { id, prefix, first_name, last_name, nick_name, birthday, location } = req.body;
-        const newUser = await DetailUser.create({ id, prefix, first_name, last_name, nick_name, birthday, location });
+        const { id } = req.body;
+        const newUser = await DetailUser.create({ id });
         res.status(201).json(newUser);
     } catch (error) {
         console.error('Error creating user', error);
         res.status(500).json({ error: 'Internal server error create user' });
+    }
+}
+
+export const updateUser = async (req: Request, res: Response) => {
+    try {
+        const { id ,first_name ,last_name ,nick_name ,birthday ,location ,prefix } = req.body;
+        await DetailUser.update({ id ,first_name ,last_name ,nick_name ,birthday ,location ,prefix}, { where: { id } });
+        res.status(200).json({ message: 'User updated successfully' });
+    } catch (error) {
+        console.error('Error updating user', error);
+        res.status(500).json({ error: 'Internal server error update user' });
     }
 }

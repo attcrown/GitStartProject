@@ -21,8 +21,7 @@ export default {
         desktopDefault,
         mobileDefault
     },
-    mounted() {
-        console.log(this.$store.state);       
+    mounted() {    
         this.checkMobile();
         window.addEventListener('resize', this.checkMobile);
     },
