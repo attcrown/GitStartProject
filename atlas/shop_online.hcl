@@ -5,17 +5,29 @@ table "detail_user" {
     type = varchar(100)
     null = false
   }
+  column "prefix" {
+    type = varchar()
+    null = true
+  }
   column "first_name" {
     type = varchar(50)
-    null = false
+    null = true
   }
   column "last_name" {
     type = varchar(50)
-    null = false
+    null = true
   }
-  column "date" {
+  column "nick_name" {
+    type = varchar(50)
+    null = true
+  }
+  column "birthday" {
     type = date
-    null = false
+    null = true
+  }
+  column "location" {
+    type = varchar(255)
+    null = true
   }
   column "created_at" {
     type    = timestamptz

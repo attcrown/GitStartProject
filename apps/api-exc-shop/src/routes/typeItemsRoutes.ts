@@ -6,14 +6,15 @@ import { getAllItems ,
     deleteItem ,
     updateItem
 } from '../controllers/typeItemsController'; 
+import { auth } from '../middlewares/auth';
 
 const routerTypeItem = express.Router();
 
 routerTypeItem.get('/items', getAllItems);
 routerTypeItem.get('/items/search', getItemsByName);
-routerTypeItem.post('/items', createItem);
-routerTypeItem.delete('/items/:id', deleteItem);
-routerTypeItem.put('/items/:id', updateItem);
+routerTypeItem.post('/items', auth, createItem);
+routerTypeItem.delete('/items/:id', auth, deleteItem);
+routerTypeItem.put('/items/:id', auth, updateItem);
 
 export default routerTypeItem;
 

@@ -2,7 +2,6 @@ import { db , sequelize} from "./services/config";
 import express from "express";
 import routerTypeItem from "./routes/typeItemsRoutes";
 import routerDetailUser from "./routes/detailUserRoutes";
-import { auth } from "./middlewares/auth";
 
 const app = express();
 const port = 3001;
@@ -18,9 +17,6 @@ sequelize.authenticate().then(() => {
 })
 // check DB firebase
 if(db) console.log('firebase Connection has been established successfully.');
-
-// auth
-app.use(auth);
 
 // routes
 app.use(routerTypeItem);
