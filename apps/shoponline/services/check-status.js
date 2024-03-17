@@ -1,5 +1,5 @@
-export function checkStatus(auth, store, router) {
-    auth.onAuthStateChanged((user) => {
+export async function checkStatus(auth, store, router) {
+    await auth.onAuthStateChanged((user) => {
         if (user?.emailVerified) {
             store.commit("SET_USER", user);
             return;

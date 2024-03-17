@@ -1,6 +1,6 @@
 <template>
     <div>
-        <detail></detail>
+        <detail v-if="doing"></detail>
     </div>
 </template>
 <script>
@@ -10,17 +10,20 @@ export default {
     layout: 'default',
     data() {
         return {
-            property: 'value',
+            property: 'value' ,
+            doing : false
+
         };
     },
-    mounted() {
-        this.checkStatusRank();
+    async mounted() {
+        await this.checkStatusRank();
+        this.doing = true
     },
     methods: {
         // ตรวจสอบมีการ login หรือไม่
-        checkStatusRank(){
+        async checkStatusRank(){
             const auth = this.$fireModule.auth();
-            checkStatus(auth ,this.$store ,this.$router);
+            await checkStatus(auth ,this.$store ,this.$router);
         }
     },
     components: {

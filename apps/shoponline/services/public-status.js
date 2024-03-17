@@ -1,5 +1,5 @@
-export function publicStatus(auth, store) {
-    auth.onAuthStateChanged((user) => {
+export async function publicStatus(auth, store) {
+    await auth.onAuthStateChanged((user) => {
         if (user?.emailVerified) {
             store.commit("SET_USER", user);
             return;

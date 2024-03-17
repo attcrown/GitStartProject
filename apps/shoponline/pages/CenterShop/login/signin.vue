@@ -128,6 +128,7 @@ export default {
             this.$refs.AlertButtom.snackbar = true;
             this.$refs.AlertButtom.colorAlart = 'red';
             this.$refs.AlertButtom.text = message;
+            this.$refs.AlertButtom.icon = 'mdi mdi-alert-circle';
             this.loadingCreate = false;
         },
         alartSuccess() {
