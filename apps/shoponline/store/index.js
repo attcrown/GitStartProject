@@ -12,7 +12,7 @@ export const state = () => ({
 
 export const mutations = {
     SET_USER(state, data) {
-        state.displayName = data?.displayName || "Null";
+        state.displayName = data?.displayName || null;
         state.email = data?.email || null;
         state.uid = data?.uid || null;
     },
