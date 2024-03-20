@@ -9,11 +9,15 @@
                         ข้อมูลส่วนตัว โหมด mobile {{ $store.state.deviceMode }}
                     </div>
                     <div>
-                        <img :src="previewAvatar ? previewAvatar : $store.state.photoURL" alt="Uploaded Image" style="max-width: 150px;">
+                        <img 
+                            class="m-3 rounded-xxl" 
+                            :src="previewAvatar ? previewAvatar : $store.state.photoURL" 
+                            alt="Uploaded Image" 
+                            style="max-width: 150px;">
                     </div>
-                    <div class="m-3 d-flex justify-center" >
+                    <div class="mb-3 d-flex justify-center" style="margin-top: -30px;">
                         <v-file-input
-                        style="max-width: 300px;"
+                        style="max-width: 200px;"
                         accept="image/png, image/jpeg, image/bmp" 
                         v-model='avatar'
                         placeholder="Pick an avatar" 
@@ -148,7 +152,7 @@ export default {
                         location: this.personalData.location,
                         prefix: this.personalData.prefix
                     }, { params: { admin: true } });
-                    
+
                     // save img to firebase
                     if(this.personalData.avatar){
                         const result = await saveImgFirebase(firebase , this.personalData.avatar ,this.$store.state.uid)

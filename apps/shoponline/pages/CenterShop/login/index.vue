@@ -127,7 +127,7 @@ export default {
                 .then((userCredential) => {
                     // การลงชื่อเข้าใช้สำเร็จ
                     const user = userCredential.user;
-                    console.log("User logged in successfully:", user);
+                    console.log("User logged in successfully:");
                     if (!user.emailVerified) {
                         //snackbar
                         this.$refs.AlertButtom.snackbar = true;
