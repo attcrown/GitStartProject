@@ -46,10 +46,13 @@
                     <template v-slot:activator="{ attrs, on }">
                         <div v-bind="attrs" v-on="on" class="d-flex align-center">
                             <v-avatar size="32px">
-                                <img alt="Avatar" src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460">
+                                <img v-if="$store.state?.photoURL"
+                                        alt="Avatar" 
+                                        :src="$store.state.photoURL" >
+                                <v-icon v-if="!$store.state?.photoURL" color="white">
+                                    mdi-account-circle
+                                </v-icon>   
                             </v-avatar>
-                            <!-- {{ $store.state.displayName }} -->
-                            <!-- <span class="mdi mdi-menu-down text-h5"></span> -->
                         </div>
                     </template>
                     <v-list>

@@ -1,18 +1,27 @@
 <template>
     <div class="fontsDetailUser" :class="$store.state.deviceMode ? 'pb-16' : 'pt-10'">
         <center>
-            <v-card class="text-center" style="background: linear-gradient(to right, #0240aa, #0210aa ,#0240aa); color: white;" max-width="1000px"
-                elevation="24" :class="$store.state.deviceMode ? '' : 'rounded-xxl'">
+            <v-card class="text-center"
+                style="background: linear-gradient(to right, #0240aa, #0210aa ,#0240aa); color: white;"
+                max-width="1000px" elevation="24" :class="$store.state.deviceMode ? '' : 'rounded-xxl'">
                 <v-form ref="form" v-model="valid" lazy-validation>
                     <div class="pt-5">
                         ข้อมูลส่วนตัว โหมด mobile {{ $store.state.deviceMode }}
                     </div>
-
-                    <div class="m-3">
-                        image
-                        <v-divider vertical color="black"></v-divider>
+                    <div>
+                        <img :src="previewAvatar ? previewAvatar : $store.state.photoURL" alt="Uploaded Image" style="max-width: 150px;">
                     </div>
-                    <v-row dense class="d-flex justify-space-around pb-10">
+                    <div class="m-3 d-flex justify-center" >
+                        <v-file-input
+                        style="max-width: 300px;"
+                        accept="image/png, image/jpeg, image/bmp" 
+                        v-model='avatar'
+                        placeholder="Pick an avatar" 
+                        prepend-icon="mdi-camera" 
+                        label="Avatar" dark
+                        @change="onFilePicked"></v-file-input>
+                    </div>
+                    <v-row dense class="d-flex justify-space-around pb-10">                     
                         <v-col cols="12" md="2">
                             <v-select class="m-4" v-model="personalData.prefix" :items="selectPrefix"
                                 :rules="selectRules" label="Prefix" dark required></v-select>
@@ -41,7 +50,7 @@
                 </v-form>
             </v-card>
 
-            <v-btn color="#0240aa" dark class="mt-4" @click="validate">
+            <v-btn color="#0240aa" dark class="mt-4" @click="validate" :loading="loadingSave">
                 save confirm
             </v-btn>
         </center>
@@ -63,7 +72,11 @@
 </template>
 
 <script>
+import firebase from 'firebase/compat/app';
 import AlertButtom from '~/components/AlertButtom.vue';
+import { processImg } from '../../../services/img-sizing.js';
+import { saveImgFirebase } from '../../../services/save-img-firebase.js';
+
 export default {
     data() {
         return {
@@ -71,6 +84,9 @@ export default {
             valid: true,
             selectPrefix: ["Mr", "Mrs", "Miss"],
             modal: false,
+            avatar: null,
+            previewAvatar: null,
+            loadingSave: false,
 
             nameRules: [
                 v => !!v || 'Name is required',
@@ -108,16 +124,20 @@ export default {
             this.$refs.AlertButtom.colorAlart = 'red';
             this.$refs.AlertButtom.text = message;
             this.$refs.AlertButtom.icon = 'mdi mdi-alert-circle';
+            this.loadingSave = false;
         },
         alertSuccess() {
             this.$refs.AlertButtom.snackbar = true;
             this.$refs.AlertButtom.colorAlart = 'success';
             this.$refs.AlertButtom.text = 'บันทึกข้อมูลสําเร็จ';
             this.$refs.AlertButtom.icon = 'mdi mdi-check-circle-outline';
+            this.loadingSave = false;
         },
-        async validate () {
-            if(this.$refs.form.validate()){
-                console.log(this.personalData)
+        async validate() {
+            this.loadingSave = true
+
+            if (this.$refs.form.validate()) {
+                
                 try {
                     const editUser = await this.$axios.$put('/document-api/updateusers', {
                         id: this.personalData.id,
@@ -127,15 +147,34 @@ export default {
                         birthday: this.personalData.birthday,
                         location: this.personalData.location,
                         prefix: this.personalData.prefix
-                    } , { params: { admin: true } });
+                    }, { params: { admin: true } });
+                    
+                    // save img to firebase
+                    if(this.personalData.avatar){
+                        const result = await saveImgFirebase(firebase , this.personalData.avatar ,this.$store.state.uid)
+                    }   
+
                     this.alertSuccess()
-                }catch (error) {
+                } catch (error) {
                     this.alertFail("บันทึกข้อมูลผิดพลาด กรุณาติดต่อผู้ดูแลระบบ")
+                    console.log(error)
                 }
-            }else{
+            } else {
                 this.alertFail("กรุณากรอกข้อมูลให้ครบถ้วน")
             }
         },
+        
+        // แสดงตัวอย่างรูป และบีบอัดภาพ 30kb
+        async onFilePicked(){
+            if(this.avatar == null) {
+                this.previewAvatar = null 
+                this.personalData.avatar = null 
+                return
+            }
+            this.personalData.avatar = await processImg(this.avatar)
+            this.previewAvatar = URL.createObjectURL(this.personalData.avatar)
+            console.log(this.previewAvatar ,this.personalData.avatar)
+        }
     },
 }
 </script>

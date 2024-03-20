@@ -4,9 +4,11 @@ export const state = () => ({
     email: null,
     uid: null,
     deviceMode: false,
+    photoURL: null,
     list_item: [],
     show_list_item: [],
     detail_item: [],
+
 });
 
 
@@ -15,6 +17,7 @@ export const mutations = {
         state.displayName = data?.displayName || null;
         state.email = data?.email || null;
         state.uid = data?.uid || null;
+        state.photoURL = data?.photoURL || null;
     },
 
     SET_DEVICE(state, data) {
