@@ -34,6 +34,10 @@ export const mutations = {
 
     SET_DETAILITEM(state, data) {
         state.detail_item = data || [];
+    },
+
+    UPDATE_IMG_PHOTO(state, data) {
+        state.photoURL = data || null;
     }
 };
 

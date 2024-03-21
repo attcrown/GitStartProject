@@ -17,13 +17,13 @@
                     </div>
                     <div class="mb-3 d-flex justify-center" style="margin-top: -30px;">
                         <v-file-input
-                        style="max-width: 200px;"
-                        accept="image/png, image/jpeg, image/bmp" 
-                        v-model='avatar'
-                        placeholder="Pick an avatar" 
-                        prepend-icon="mdi-camera" 
-                        label="Avatar" dark
-                        @change="onFilePicked"></v-file-input>
+                            style="max-width: 200px;"
+                            accept="image/png, image/jpeg, image/bmp" 
+                            v-model='avatar'
+                            placeholder="Pick an avatar" 
+                            prepend-icon="mdi-camera" 
+                            label="Avatar" dark
+                            @change="onFilePicked"></v-file-input>
                     </div>
                     <v-row dense class="d-flex justify-space-around pb-10">                     
                         <v-col cols="12" md="2">
@@ -154,8 +154,16 @@ export default {
                     }, { params: { admin: true } });
 
                     // save img to firebase
-                    if(this.personalData.avatar){
-                        const result = await saveImgFirebase(firebase , this.personalData.avatar ,this.$store.state.uid)
+                    if(this.personalData.avatar){                        
+                        const result = await saveImgFirebase(
+                            // firebase , files , uid ,path
+                            firebase , 
+                            this.personalData.avatar ,
+                            this.$store.state.uid ,
+                            `user/${this.$store.state.uid}/avatar.jpg`)
+
+                        this.$store.commit('UPDATE_IMG_PHOTO', result); 
+                        console.log(this.$store.state)
                     }   
 
                     this.alertSuccess()

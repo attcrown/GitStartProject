@@ -1,7 +1,7 @@
-export async function saveImgFirebase(firebase , files , uid) {
+export async function saveImgFirebase(firebase , files , uid ,path) {
     console.log(firebase , files , uid)
     const storageRef = firebase.storage().ref();
-    const imageRef = storageRef.child(`user/${uid}/avatar.jpg`);
+    const imageRef = storageRef.child(path);
     
     // บันทึกรูป
     await imageRef.put(files);
