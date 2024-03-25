@@ -19,6 +19,15 @@ services:
       - ./volumes/db/init:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
 
+  web:
+    logging: *default-logging
+    build: 
+      context: ./apps/shoponline
+      dockerfile: dockerfile
+    restart: unless-stopped
+    networks:
+      - default
+
 volumes:
   db-data:
 
