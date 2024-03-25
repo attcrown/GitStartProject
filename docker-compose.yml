@@ -11,13 +11,14 @@ services:
     logging: *default-logging
     image: postgres:16.1-alpine
     restart: unless-stopped
-    networks:
-      - default
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - ./volumes/db/init:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
+    networks:
+      - default
+    
 
   web:
     logging: *default-logging
@@ -28,8 +29,21 @@ services:
     networks:
       - default
 
+
+  backend:
+    logging: *default-logging
+    build:
+      context: ./apps/api-exc-shop
+      dockerfile: dockerfile
+    restart: unless-stopped
+    networks:
+      - default
+   
+
 volumes:
   db-data:
 
 networks:
   default:
+
+

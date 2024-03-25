@@ -1,0 +1,19 @@
+# Use an official Node.js runtime as a base image
+FROM node:18
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+# เพิ่มบรรทัดนี้เพื่อ build โปรเจกต์
+RUN npm run build
+
+EXPOSE 4000
+
+CMD ["npm","run","start"]

@@ -6,3 +6,7 @@ services:
   web:
     ports:
       - 3000:3000
+
+  backend:
+    ports:
+      - 3001:3001
