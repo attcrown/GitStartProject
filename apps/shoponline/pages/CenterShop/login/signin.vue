@@ -109,7 +109,7 @@ export default {
             // console.log("User registered successfully:", user);
 
             try{
-                await this.$axios.$post("/document-api/create", { id: user.uid });
+                await this.$axios.$post("/document-api/createusers", { id: user.uid });
             }catch(error){               
                 this.alartFail("ระบบไม่สามารถเชื่อมต่อกับฐานข้อมูลได้ กรุณาติดต่อผู้ดูแลระบบ");
                 user.delete();
