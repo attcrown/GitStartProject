@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import TypeItems from '../models/typeItemModel';
 import { Op } from 'sequelize';
 
-export const getAllItems = async (req: Request, res: Response) => {
+export const getAllItems = async (res: Response) => {
   try {
     const items = await TypeItems.findAll();
     res.json(items);

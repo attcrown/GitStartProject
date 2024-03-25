@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import DetailUser from '../models/detailUserModel';
 
-export const getAllUsers = async (req: Request, res: Response) => {
+export const getAllUsers = async (res: Response) => {
     try {
         const users = await DetailUser.findAll();
         res.json(users);

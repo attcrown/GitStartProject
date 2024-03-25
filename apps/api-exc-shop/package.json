@@ -2,10 +2,11 @@
   "name": "@myproject/api-exc-shop",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
+    "start": "node dist/index.js",
     "dev": "nodemon -L src/index.js",
-    "build": "tsc && vite build",
+    "build": "tsc",
     "preview": "vite preview"
   },
   "devDependencies": {
