@@ -2,11 +2,11 @@
     <div class="fontsDetailUser" :class="$store.state.deviceMode ? 'pb-16' : 'pt-10'">
         <center>
             <v-card class="text-center"
-                style="background: linear-gradient(to right, #0240aa, #0210aa ,#0240aa); color: white;"
+                style="background: white;"
                 max-width="1000px" elevation="24" :class="$store.state.deviceMode ? '' : 'rounded-xxl'">
                 <v-form ref="form" v-model="valid" lazy-validation>
                     <div class="pt-5">
-                        ข้อมูลส่วนตัว โหมด mobile {{ $store.state.deviceMode }}
+                        ข้อมูลส่วนตัว
                     </div>
                     <div>
                         <img 
@@ -22,33 +22,40 @@
                             v-model='avatar'
                             placeholder="Pick an avatar" 
                             prepend-icon="mdi-camera" 
-                            label="Avatar" dark
+                            label="Avatar" 
                             @change="onFilePicked"></v-file-input>
                     </div>
                     <v-row dense class="d-flex justify-space-around pb-10">                     
                         <v-col cols="12" md="2">
-                            <v-select class="m-4" v-model="personalData.prefix" :items="selectPrefix"
-                                :rules="selectRules" label="Prefix" dark required></v-select>
+                            <v-select class="mx-4" v-model="personalData.prefix" :items="selectPrefix"
+                                :rules="selectRules" label="Prefix"  required></v-select>
                         </v-col>
                         <v-col cols="12" md="5">
-                            <v-text-field class="m-4" v-model="personalData.first_name" :counter="50" :rules="nameRules"
-                                dark label="First name" required></v-text-field>
+                            <v-text-field class="mx-4" v-model="personalData.first_name" :counter="50" :rules="nameRules"
+                                 label="First name" required></v-text-field>
                         </v-col>
                         <v-col cols="12" md="5">
-                            <v-text-field class="m-4" v-model="personalData.last_name" :counter="50" :rules="nameRules"
-                                dark label="Last name" required></v-text-field>
+                            <v-text-field class="mx-4" v-model="personalData.last_name" :counter="50" :rules="nameRules"
+                                 label="Last name" required></v-text-field>
                         </v-col>
                         <v-col cols="12" md="3">
-                            <v-text-field class="m-4" v-model="personalData.nick_name" :counter="50" :rules="nameRules"
-                                dark label="nick name" required></v-text-field>
+                            <v-text-field class="mx-4" v-model="personalData.nick_name" :counter="50" :rules="nameRules"
+                                 label="nick name" required></v-text-field>
                         </v-col>
                         <v-col cols="12" md="3">
                             <v-text-field v-model="personalData.birthday" label="birth day" prepend-icon="mdi-calendar"
-                                class="m-4" readonly dark :rules="nameRules" @click="modal = true"></v-text-field>
+                                class="mx-4" readonly  :rules="nameRules" @click="modal = true"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field class="m-4" v-model="personalData.location" :counter="255" :rules="nameRules"
-                                dark label="location" required></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <div class="pt-5">
+                        ที่อยู่ส่วนตัว
+                    </div>
+                    <v-row dense class="d-flex justify-space-around pb-10">
+                        <v-col cols="12" md="6">
+                            <v-text-field class="mx-4" v-model="personalData.location" :counter="255" :rules="nameRules"
+                                 label="location" required></v-text-field>
                         </v-col>
                     </v-row>
                 </v-form>
