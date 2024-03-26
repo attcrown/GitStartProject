@@ -21,7 +21,6 @@ services:
     
 
   web:
-    logging: *default-logging
     build: 
       context: ./apps/shoponline
       dockerfile: dockerfile
@@ -31,7 +30,6 @@ services:
 
 
   backend:
-    logging: *default-logging
     build:
       context: ./apps/api-exc-shop
       dockerfile: dockerfile
